@@ -1,4 +1,4 @@
-pyton-scripts
+python-scripts
 =============
 
 Python Scripts
