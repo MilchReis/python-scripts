@@ -4,7 +4,7 @@ python-scripts
 Small python snippets for small problems.
 
 ## communication.py ##
-The little libary provides a more comfortable access to the information exchange over sockets. The including threading realises a parallel processing for incoming informations. Also the snippet can be used for interprocess communication.
+The little library provides a more comfortable access to the information exchange over sockets. The including threading realises a parallel processing for incoming informations. Also the snippet can be used for interprocess communication.
 
 See the usage as an example inside the file.
 
