@@ -36,7 +36,7 @@ class Sender():
     UDP = socket.SOCK_DGRAM
     TCP = socket.SOCK_STREAM
 
-    def __init__(self, address, port, socktype=Sender.UDP):
+    def __init__(self, address, port, socktype=socket.SOCK_DGRAM):
         ''' Specifies an object with the given address and port, 
         but don't connect to the port
 
@@ -52,7 +52,7 @@ class Sender():
         self.sock = None
         self.type = socktype
 
-        if not self.type == UDP and not self.type == TCP:
+        if not self.type == Sender.UDP and not self.type == Sender.TCP:
             raise ValueError("socket type have to be Sender.UDP or Sender.TCP")
         
     def send(self, message):
@@ -100,7 +100,7 @@ class Receiver(threading.Thread):
     UDP = socket.SOCK_DGRAM
     TCP = socket.SOCK_STREAM
     
-    def __init__(self, address, port, callback, socktype=Receiver.UDP):
+    def __init__(self, address, port, callback, socktype=socket.SOCK_DGRAM):
         '''
         arguments:
             address    -- IPv4 address (string)
@@ -120,7 +120,7 @@ class Receiver(threading.Thread):
         self.callback = callback
         self.type = socktype
 
-        if not self.type == UDP and not self.type == TCP:
+        if not self.type == Receiver.UDP and not self.type == Receiver.TCP:
             raise ValueError("socket type have to be Receiver.UDP or Receiver.TCP")
 
 
@@ -138,7 +138,7 @@ class Receiver(threading.Thread):
     def start(self):
         ''' Starts the listening process '''
         self.running = True
-        self.sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+        self.sock = socket.socket(socket.AF_INET, self.type)
         self.sock.bind((self.address, self.port))
         threading.Thread.start(self)
 
